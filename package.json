@@ -1,7 +1,7 @@
 {
-    "name": "next-temp",
+    "name": "weather-app",
     "version": "0.0.1",
-    "description": "my app",
+    "description": "Show temperature of current location",
     "scripts": {
         "dev": "next dev",
         "build": "next build",

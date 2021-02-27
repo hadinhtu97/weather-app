@@ -16,7 +16,7 @@ export default async (req, res) => {
                     country: data.sys.country || '',
                     temperature: data.main.temp,
                     weather: data.weather[0].main,
-                    weatherIconUrl: data.weather[0].icon
+                    iconUrl: data.weather[0].icon || ''
                 })
             }
             break

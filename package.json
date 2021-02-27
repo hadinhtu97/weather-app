@@ -1,0 +1,17 @@
+{
+    "name": "next-temp",
+    "version": "0.0.1",
+    "description": "my app",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start"
+    },
+    "author": "Tu Ha Dinh",
+    "license": "ISC",
+    "dependencies": {
+        "next": "^10.0.7",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1"
+    }
+}

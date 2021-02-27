@@ -1,3 +1,53 @@
 .home {
     text-align: center;
 }
+
+.home h1 {
+    margin: 5rem 0;
+    font-size: 4rem;
+}
+
+.temp {
+    font-size: 3rem;
+    color: orange
+}
+
+.degree {
+    outline: none;
+    font-size: 2rem;
+    background-color: #161616;
+    border: none;
+    color: blue;
+}
+
+.weather {
+    font-size: 2rem;
+}
+
+.icon {
+    width: 3rem;
+    height: auto;
+}
+
+.city {
+    font-size: 1.5rem;
+}
+
+.input {
+    width: 6rem;
+    margin: 1rem 0;
+    outline: none;
+    border: none;
+}
+
+.submit {
+    margin-bottom: 1rem;
+    outline: none;
+    background-color: #161616;
+    color: white;
+    border: none;
+}
+
+.submit:hover {
+    color: orange
+}

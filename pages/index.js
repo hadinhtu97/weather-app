@@ -10,7 +10,7 @@ class Home extends React.Component {
         this.state = {
             latitude: 19.796,
             longitude: 105.775,
-            temp: 18,
+            temp: 0,
             degree: 'C',
             city: 'Thanh Hoa',
             country: 'VN',
@@ -84,16 +84,16 @@ class Home extends React.Component {
                 </Head>
                 <main className={styles.home}>
                     <h1>Weather App</h1>
-                    <p className={styles.temp}>{this.state.temp} &deg;<button onClick={this.changeDegree} className={styles.degree}>{this.state.degree}</button></p>
+                    <p className={styles.temp}>{this.state.temp}&deg;<button onClick={this.changeDegree} className={styles.degree}>{this.state.degree}</button></p>
                     <p className={styles.weather}>{this.state.weather}</p>
-                    <p className={styles.icon}><img src={this.state.iconUrl} /></p>
-                    <p className={styles.city}>{this.state.city == '' ? 'Unknow' : this.state.city} city</p>
-                    <p className={styles.country}>{this.state.country == '' ? 'Unknow' : this.state.country} country</p>
-                    <form>
-                        <input type='number' placeholder='latitude' value={this.state.latitude} step={0.1} onChange={(e) => this.setState({ latitude: e.target.value })} />
-                        <input type='number' placeholder='longitude' value={this.state.longitude} step={0.1} onChange={(e) => this.setState({ longitude: e.target.value })} /> <br />
-                        <input type='submit' value='Get Weather with latitude and longitude' onClick={this.newWeather} /> <br />
-                        or <button onClick={this.getCurrentWeather}>Get Weather in your current location</button>
+                    <p><img className={styles.icon} src={this.state.iconUrl} /></p>
+                    <p className={styles.city}>{this.state.city == '' ? 'Unknow' : this.state.city}, {this.state.country == '' ? 'Unknow' : this.state.country}</p>
+                    <hr />
+                    <form className={styles.form}>
+                        <input className={styles.input} type='number' placeholder='latitude' value={this.state.latitude} step={0.1} onChange={(e) => this.setState({ latitude: e.target.value })} />
+                        <input className={styles.input} type='number' placeholder='longitude' value={this.state.longitude} step={0.1} onChange={(e) => this.setState({ longitude: e.target.value })} /> <br />
+                        <input className={styles.submit} type='submit' value='Submit' onClick={this.newWeather} />
+                        <button className={styles.submit} onClick={this.getCurrentWeather}>My location</button>
                     </form>
                 </main>
             </>

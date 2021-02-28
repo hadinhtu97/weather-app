@@ -14,3 +14,6 @@ npm run dev
 ```
 GET request to : []\api\weather?latitude=[number]&longitude=[number]
 ```
+
+### Demo
+[Link Demo](https://weather-app/.hadinhtu97.repl.co/)

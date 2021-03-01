@@ -1,104 +1,81 @@
 import styles from '../styles/Home.module.css'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import fetch from 'node-fetch'
 
-class Home extends React.Component {
+const getWeatherData = async (latitude, longitude) => {
+    let url = 'https://weather-proxy.freecodecamp.rocks/api/current?lat=' + latitude + '&lon=' + longitude
+    let res = await fetch(url)
+    return await res.json()
+}
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            latitude: 19.796,
-            longitude: 105.775,
-            temp: 0,
-            degree: 'C',
-            city: 'Thanh Hoa',
-            country: 'VN',
-            weather: 'Clouds',
-            iconUrl: 'https://cdn.freecodecamp.org/weather-icons/04n.png'
-        }
-        this.setWeatherDataToState = this.setWeatherDataToState.bind(this)
-        this.changeDegree = this.changeDegree.bind(this)
-        this.newWeather = this.newWeather.bind(this)
-        this.getCurrentWeather = this.getCurrentWeather.bind(this)
+const Weather = () => {
+    const [latitude, setLatitude] = useState(0)
+    const [longitude, setLongitude] = useState(0)
+    const [temp, setTemp] = useState(0)
+    const [degree, setDegree] = useState('C')
+    const [city, setCity] = useState('Unknow')
+    const [country, setCountry] = useState('Unknow')
+    const [weather, setWeather] = useState('Unknow')
+    const [iconUrl, setIconUrl] = useState('')
+
+    const setData = (data) => {
+        setLatitude(data.coord.lat)
+        setLongitude(data.coord.lon)
+        setTemp(Math.round(data.main.temp))
+        setDegree('C')
+        setCity(data.name || '')
+        setCountry(data.sys.country || '')
+        setWeather(data.weather[0].main)
+        setIconUrl(data.weather[0].icon || '')
     }
 
-    componentDidMount() {
-        this.getWeatherData(this.state.latitude, this.state.longitude)
-            .then(data => {
-                this.setWeatherDataToState(data)
-            })
+    const changeDegree = () => {
+        setTemp(degree == 'F' ? Math.round(temp * 9 / 5 + 32) : Math.round((temp - 32) * 5 / 9))
+        setDegree(degree == 'C' ? 'F' : 'C')
     }
 
-    async getWeatherData(latitude, longitude) {
-        let url = 'https://weather-proxy.freecodecamp.rocks/api/current?lat=' + latitude + '&lon=' + longitude
-        let res = await fetch(url)
-        return await res.json()
-    }
-
-    setWeatherDataToState(data) {
-        this.setState({
-            latitude: data.coord.lat,
-            longitude: data.coord.lon,
-            temp: Math.round(data.main.temp),
-            city: data.name || '',
-            country: data.sys.country || '',
-            weather: data.weather[0].main,
-            iconUrl: data.weather[0].icon,
-            degree: 'C'
-        })
-    }
-
-    changeDegree() {
-        this.setState(state => ({
-            degree: state.degree == 'C' ? 'F' : 'C',
-            temp: state.degree == 'F' ? Math.round(state.temp * 9 / 5 + 32) : Math.round((state.temp - 32) * 5 / 9)
-        }))
-    }
-
-    newWeather(e) {
+    const getNewWeather = (e) => {
         e.preventDefault();
-        this.getWeatherData(this.state.latitude, this.state.longitude)
+        getWeatherData(latitude, longitude)
             .then(data => {
-                this.setWeatherDataToState(data)
+                setData(data)
             })
     }
 
-    getCurrentWeather(e) {
+    const getCurrentWeather = (e) => {
         e.preventDefault();
         window.navigator.geolocation.getCurrentPosition(position => {
-            this.getWeatherData(position.coords.latitude, position.coords.longitude)
+            getWeatherData(position.coords.latitude, position.coords.longitude)
                 .then(data => {
-                    this.setWeatherDataToState(data)
+                    setData(data)
                 })
         }, (err) => {
             alert('Cannot get your current location!')
         })
     }
 
-    render() {
-        return (
-            <>
-                <Head>
-                    <title>Weather</title>
-                </Head>
-                <main className={styles.home}>
-                    <h1>Weather App</h1>
-                    <p className={styles.temp}>{this.state.temp}&deg;<button onClick={this.changeDegree} className={styles.degree}>{this.state.degree}</button></p>
-                    <p className={styles.weather}>{this.state.weather}</p>
-                    <p><img className={styles.icon} src={this.state.iconUrl} /></p>
-                    <p className={styles.city}>{this.state.city == '' ? 'Unknow' : this.state.city}, {this.state.country == '' ? 'Unknow' : this.state.country}</p>
-                    <hr />
-                    <form className={styles.form}>
-                        <input className={styles.input} type='number' placeholder='latitude' value={this.state.latitude} step={0.1} onChange={(e) => this.setState({ latitude: e.target.value })} />
-                        <input className={styles.input} type='number' placeholder='longitude' value={this.state.longitude} step={0.1} onChange={(e) => this.setState({ longitude: e.target.value })} /> <br />
-                        <input className={styles.submit} type='submit' value='Submit' onClick={this.newWeather} />
-                        <button className={styles.submit} onClick={this.getCurrentWeather}>My location</button>
-                    </form>
-                </main>
-            </>
-        )
-    }
+    return (
+        <>
+            <Head>
+                <title>Weather</title>
+            </Head>
+            <main className={styles.home}>
+                <h1>Weather App</h1>
+                <p className={styles.temp}>{temp}&deg;<button onClick={changeDegree} className={styles.degree}>{degree}</button></p>
+                <p className={styles.weather}>{weather}</p>
+                <p><img className={styles.icon} src={iconUrl} /></p>
+                <p className={styles.city}>{city == '' ? 'Unknow' : city}, {country == '' ? 'Unknow' : country}</p>
+                <hr />
+                <form className={styles.form}>
+                    <input className={styles.input} type='number' placeholder='latitude' value={latitude} step={0.1} onChange={(e) => setLatitude(e.target.value)} />
+                    <input className={styles.input} type='number' placeholder='longitude' value={longitude} step={0.1} onChange={(e) => setLongitude(e.target.value)} /> <br />
+                    <input className={styles.submit} type='submit' value='Submit' onClick={getNewWeather} />
+                    <button className={styles.submit} onClick={getCurrentWeather}>My location</button>
+                </form>
+            </main>
+        </>
+    )
 }
 
-export default Home
+export default Weather

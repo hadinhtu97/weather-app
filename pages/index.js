@@ -84,11 +84,12 @@ class Home extends React.Component {
                 </Head>
                 <main className={styles.home}>
                     <h1>Weather App</h1>
-                    <p className={styles.temp}>{this.state.temp}&deg;<button onClick={this.changeDegree} className={styles.degree}>{this.state.degree}</button></p>
-                    <p className={styles.weather}>{this.state.weather}</p>
-                    <p><img className={styles.icon} src={this.state.iconUrl} /></p>
-                    <p className={styles.city}>{this.state.city == '' ? 'Unknow' : this.state.city}, {this.state.country == '' ? 'Unknow' : this.state.country}</p>
-                    <hr />
+                    <div className={styles.main}>
+                        <p className={styles.temp}>{this.state.temp}&deg;<button onClick={this.changeDegree} className={styles.degree}>{this.state.degree}</button></p>
+                        <p className={styles.weather}>{this.state.weather}</p>
+                        <p><img className={styles.icon} src={this.state.iconUrl} /></p>
+                        <p className={styles.city}>{this.state.city == '' ? 'Unknow' : this.state.city}, {this.state.country == '' ? 'Unknow' : this.state.country}</p>
+                    </div>
                     <form className={styles.form}>
                         <input className={styles.input} type='number' placeholder='latitude' value={this.state.latitude} step={0.1} onChange={(e) => this.setState({ latitude: e.target.value })} />
                         <input className={styles.input} type='number' placeholder='longitude' value={this.state.longitude} step={0.1} onChange={(e) => this.setState({ longitude: e.target.value })} /> <br />

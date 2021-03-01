@@ -2,22 +2,32 @@
     text-align: center;
 }
 
+.main {
+    background-color: #eaeaea;
+    max-width: 60%;
+    margin: 0 auto;
+    color: #161616;
+    border: 1px solid #eaeaea;
+    border-radius: 2rem;
+}
+
 .home h1 {
-    margin: 5rem 0;
-    font-size: 4rem;
+    margin: 3rem 0;
+    font-size: 3rem;
+    color: #ffa500;
 }
 
 .temp {
     font-size: 3rem;
-    color: orange
+    color: #0070f3;
 }
 
 .degree {
     outline: none;
     font-size: 2rem;
-    background-color: #161616;
+    background-color: #eaeaea;
     border: none;
-    color: blue;
+    color: #ffa500;
 }
 
 .weather {
@@ -35,7 +45,8 @@
 
 .input {
     width: 6rem;
-    margin: 1rem 0;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
     outline: none;
     border: none;
 }

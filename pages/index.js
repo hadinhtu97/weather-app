@@ -62,11 +62,12 @@ const Weather = () => {
             </Head>
             <main className={styles.home}>
                 <h1>Weather App</h1>
-                <p className={styles.temp}>{temp}&deg;<button onClick={changeDegree} className={styles.degree}>{degree}</button></p>
-                <p className={styles.weather}>{weather}</p>
-                <p><img className={styles.icon} src={iconUrl} /></p>
-                <p className={styles.city}>{city == '' ? 'Unknow' : city}, {country == '' ? 'Unknow' : country}</p>
-                <hr />
+                <div className={styles.main}>
+                  <p className={styles.temp}>{temp}&deg;<button onClick={changeDegree} className={styles.degree}>{degree}</button></p>
+                  <p className={styles.weather}>{weather}</p>
+                  <p><img className={styles.icon} src={iconUrl} /></p>
+                  <p className={styles.city}>{city == '' ? 'Unknow' : city}, {country == '' ? 'Unknow' : country}</p>
+                </div>
                 <form className={styles.form}>
                     <input className={styles.input} type='number' placeholder='latitude' value={latitude} step={0.1} onChange={(e) => setLatitude(e.target.value)} />
                     <input className={styles.input} type='number' placeholder='longitude' value={longitude} step={0.1} onChange={(e) => setLongitude(e.target.value)} /> <br />

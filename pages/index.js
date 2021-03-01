@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import fetch from 'node-fetch'
 
@@ -18,6 +18,13 @@ const Weather = () => {
     const [country, setCountry] = useState('Unknow')
     const [weather, setWeather] = useState('Unknow')
     const [iconUrl, setIconUrl] = useState('')
+
+    useEffect(() => {
+        getWeatherData(21.0759, 105.7637)
+            .then(data => {
+                setData(data)
+            })
+    }, [])
 
     const setData = (data) => {
         setLatitude(data.coord.lat)
@@ -63,10 +70,10 @@ const Weather = () => {
             <main className={styles.home}>
                 <h1>Weather App</h1>
                 <div className={styles.main}>
-                  <p className={styles.temp}>{temp}&deg;<button onClick={changeDegree} className={styles.degree}>{degree}</button></p>
-                  <p className={styles.weather}>{weather}</p>
-                  <p><img className={styles.icon} src={iconUrl} /></p>
-                  <p className={styles.city}>{city == '' ? 'Unknow' : city}, {country == '' ? 'Unknow' : country}</p>
+                    <p className={styles.temp}>{temp}&deg;<button onClick={changeDegree} className={styles.degree}>{degree}</button></p>
+                    <p className={styles.weather}>{weather}</p>
+                    <p><img className={styles.icon} src={iconUrl} /></p>
+                    <p className={styles.city}>{city == '' ? 'Unknow' : city}, {country == '' ? 'Unknow' : country}</p>
                 </div>
                 <form className={styles.form}>
                     <input className={styles.input} type='number' placeholder='latitude' value={latitude} step={0.1} onChange={(e) => setLatitude(e.target.value)} />

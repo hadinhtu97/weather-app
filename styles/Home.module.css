@@ -1,64 +1,108 @@
-.home {
+.title {
     text-align: center;
+    font-size: 2.5rem;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
 }
 
-.main {
-    background-color: #eaeaea;
-    max-width: 60%;
-    margin: 0 auto;
-    color: #161616;
-    border: 1px solid #eaeaea;
-    border-radius: 2rem;
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-.home h1 {
-    margin: 3rem 0;
-    font-size: 3rem;
-    color: #ffa500;
+.left {
+    flex-basis: 40%;
+    padding: 0 1rem;
+    margin: 0 1rem;
 }
 
-.temp {
-    font-size: 3rem;
-    color: #0070f3;
+.right {
+    flex-basis: 40%;
+    padding: 1rem;
+    margin: 1rem;
 }
 
-.degree {
-    outline: none;
-    font-size: 2rem;
-    background-color: #eaeaea;
-    border: none;
-    color: #ffa500;
+.map {
+    width: 100%;
+    height: 300px;
 }
 
-.weather {
-    font-size: 2rem;
-}
-
-.icon {
-    width: 3rem;
-    height: auto;
-}
-
-.city {
-    font-size: 1.5rem;
+@media(max-width: 700px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .left, .right {
+        flex-basis: 90%;
+    }
 }
 
 .input {
-    width: 6rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    width: 4.5rem;
+    height: 1.5rem;
+    margin: 1rem 0;
+    border: 1px solid #eaeaea;
     outline: none;
-    border: none;
 }
 
 .submit {
-    margin-bottom: 1rem;
+    width: auto;
+    height: 1.7rem;
+    margin-left: 1rem;
     outline: none;
-    background-color: #161616;
-    color: white;
-    border: none;
+    border: 1px solid #eaeaea;
+    background-color: #fff;
+    font-family: monospace;
 }
 
 .submit:hover {
-    color: orange
+    background-color: #0070f3;
+    color: white
+}
+
+.location {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.weather {
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.temp {
+    padding-right: 1rem;
+    font-size: 2rem;
+}
+
+.degree {
+    background-color: #161616;
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    color: #0070f3;
+}
+
+.sky {
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.description {
+    font-size: 1.5rem;
+}
+
+.information {
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.color {
+    color: #0070f3;
 }

@@ -1,6 +1,6 @@
 {
     "name": "weather-app",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Show temperature of current location",
     "scripts": {
         "dev": "next dev",
@@ -10,6 +10,7 @@
     "author": "Tu Ha Dinh",
     "license": "ISC",
     "dependencies": {
+        "google-map-react": "^2.1.9",
         "next": "^10.0.7",
         "node-fetch": "^2.6.1",
         "react": "^17.0.1",

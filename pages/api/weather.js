@@ -1,23 +1,17 @@
-import fetch from 'node-fetch'
+import getWeatherData from '../../modules/weather'
 
 export default async (req, res) => {
     switch (req.method) {
         case 'GET':
-            if (req.query.latitude == undefined || req.query.longitude == undefined) {
-                res.send('Require latitude and longitude!')
+            if (req.query.lat == undefined || req.query.lon == undefined) {
+                res.send('Require lat and lon!')
             } else {
-                let url = 'https://weather-proxy.freecodecamp.rocks/api/current?lat=' + req.query.latitude + '&lon=' + req.query.longitude
-                let responsive = await fetch(url)
-                let data = await responsive.json()
-                res.json({
-                    latitude: data.coord.lat,
-                    longitude: data.coord.lon,
-                    city: data.name || '',
-                    country: data.sys.country || '',
-                    temperature: data.main.temp,
-                    weather: data.weather[0].main,
-                    iconUrl: data.weather[0].icon || ''
-                })
+                try {
+                    let data = await getWeatherData(req.query.lat, req.query.lon);
+                    res.json(data)
+                } catch (err) {
+                    res.send('Can not get weather data. Try again later!')
+                }
             }
             break
         default:

@@ -8,11 +8,12 @@ A page that shows weather information of current location
 git clone https://github.com/hadinhtu97/weather-app.git
 cd weather-app
 npm install
-npm run dev
+npm run build
+npm run start
 ```
 ## Api
 ```
-GET request to : []\api\weather?latitude=[number]&longitude=[number]
+GET request to : []\api\weather?lat={lattitude}&lon={longitude}
 ```
 
 ### Demo
